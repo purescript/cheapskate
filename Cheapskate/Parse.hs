@@ -20,6 +20,7 @@ import Control.Monad.RWS
 import Control.Applicative
 import qualified Data.Map as M
 import Data.List (intercalate)
+import Control.Monad (guard, unless, replicateM)
 
 import Debug.Trace
 
