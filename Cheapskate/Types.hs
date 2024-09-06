@@ -55,7 +55,7 @@ data Inline = Str Text
             | Image Inlines Text {- URL -} Text {- title -}
             | Entity Text
             | RawHtml Text
-            deriving (Show, Data, Typeable)
+            deriving (Show, Eq, Data, Typeable)
 
 type Inlines = Seq Inline
 
