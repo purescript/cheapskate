@@ -25,12 +25,12 @@ data Block = Para Inlines
            | CodeBlock CodeAttr Text
            | HtmlBlock Text
            | HRule
-           deriving (Show, Data, Typeable)
+           deriving (Show, Eq, Data, Typeable)
 
 -- | Attributes for fenced code blocks.  'codeLang' is the
 -- first word of the attribute line, 'codeInfo' is the rest.
 data CodeAttr = CodeAttr { codeLang :: Text, codeInfo :: Text }
-              deriving (Show, Data, Typeable)
+              deriving (Show, Eq, Data, Typeable)
 
 data ListType = Bullet Char | Numbered NumWrapper Int deriving (Eq,Show,Data,Typeable)
 
