@@ -3,7 +3,6 @@ TESTDIR ?= *
 PATT ?= .
 TESTS=$(shell ls $(TESTDIR)/*.markdown | grep $(PATT))
 DIFFS=$(patsubst %.markdown,%.diff,$(TESTS))
-PROG ?= ../dist/build/cheapskate/cheapskate
 FILTER ?= perl -pe 's/ /␣/g'
 TIDYCMD ?= tidy -asxhtml -utf8 --show-body-only yes --show-warnings no -quiet
 DETAILS ?= 1
@@ -26,9 +25,11 @@ all: $(DIFFS)
 
 %.actual.html: %.markdown
 ifeq ($(TIDY),1)
-	-cat $< | $(PROG) | $(TIDYCMD) > $@
+	cd .. \
+		&& cat tests/$< | cabal run | $(TIDYCMD) > tests/$@
 else
-	-cat $< | $(PROG) > $@
+	cd .. \
+		&& cat tests/$< | cabal run > tests/$@
 endif
 
 %.expected.html: %.html
